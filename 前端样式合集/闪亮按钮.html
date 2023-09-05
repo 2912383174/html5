@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闪亮按钮</title>
+    <style>
+        :root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #FD79A8;
+    --color3          : #0984E3;
+    --color4          : #00B894;
+    --color5          : #FDCB6E;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-250px);
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+a {
+    position: relative;
+    padding: 12px 30px;
+    margin: 30px;
+    background-color: #4d385b;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 6px;
+    border: 1px solid #130f36;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+a:nth-child(2):hover {
+    background-color: #ff6659;
+}
+
+a:nth-child(3):hover {
+    background-color: #762376;
+}
+
+a::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    /* 移除默认按钮可视区域 */
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    /* 背景图用linear-gradient方法生成60的过渡渐变 */
+    background-image: linear-gradient(60deg, transparent, transparent, #ffffff, transparent, transparent);
+    /* 过渡动画left属性0.5s */
+    transition: left 0.5s;
+}
+
+a:hover::before {
+    left: 100%;
+}
+    </style>
+</head>
+<body>
+    <div class="channel">闪亮按钮</div>
+    <a href="#">闪亮按钮</a>
+    <a href="#">闪亮按钮</a>
+    
+</body>
+</html>

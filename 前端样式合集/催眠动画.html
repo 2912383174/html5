@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>催眠动画</title>
+    <style>
+        :root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #FD79A8;
+    --color3          : #0984E3;
+    --color4          : #00B894;
+    --color5          : #FDCB6E;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: black;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -250px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : white;
+}
+
+.container {
+    position       : relative;
+    width          : 100vw;
+    height         : 100vh;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    transform-style: preserve-3d;
+    perspective    : 200px;
+    overflow       : hidden;
+    overflow       : hidden;
+}
+
+.circle {
+    position       : absolute;
+    box-sizing     : border-box;
+    width          : 60vh;
+    height         : 60vh;
+    border         : 15px solid var(--color);
+    border-radius  : 50%;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    animation: animate 3.2s ease-in-out infinite reverse both;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+.circle::before {
+    position     : absolute;
+    content      : "";
+    box-sizing   : border-box;
+    width        : 60vh;
+    height       : 60vh;
+    border-radius: 50%;
+    border       : 15px solid var(--color);
+    filter       : blur(10px);
+}
+
+.circle::after {
+    position     : absolute;
+    content      : "";
+    box-sizing   : border-box;
+    width        : 60vh;
+    height       : 60vh;
+    border-radius: 50%;
+    border       : 15px solid var(--color);
+    filter       : blur(15px);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateZ(190px) scale(1);
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateZ(-600px) scale(0.2);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="channel">
+        催眠动画
+    </div>
+    <div class="container">
+         <div class="circle" style="--i:1;--color:#EC3E27;"></div>
+         <div class="circle" style="--i:2;--color:#FD79A8;"></div>
+         <div class="circle" style="--i:3;--color:#0984E3;"></div>
+         <div class="circle" style="--i:4;--color:#00B894;"></div>
+         <div class="circle" style="--i:5;--color:#FDCB6E;"></div>
+         <div class="circle" style="--i:6;--color:#e056fd;"></div>
+         <div class="circle" style="--i:7;--color:#F97F51;"></div>
+         <div class="circle" style="--i:8;--color:#BDC581;"></div>
+         <div class="circle" style="--i:9;--color:#EC3E27;"></div>
+         <div class="circle" style="--i:10;--color:#FD79A8;"></div>
+         <div class="circle" style="--i:11;--color:#0984E3;"></div>
+         <div class="circle" style="--i:12;--color:#00B894;"></div>
+         <div class="circle" style="--i:13;--color:#FDCB6E;"></div>
+         <div class="circle" style="--i:14;--color:#e056fd;"></div>
+         <div class="circle" style="--i:15;--color:#F97F51;"></div>
+         <div class="circle" style="--i:16;--color:#BDC581;"></div>
+    </div>
+    <script>
+        // 提前写好的要给代码可以通过鼠标控制perspective-origin
+        // 这个属性可以让你从不同视角查看3d变化
+        // 容器
+        let container = document.querySelector('.container');
+
+        // 可视区域大小
+        let window_widht = document.documentElement.clientWidth;
+        let window_height = document.documentElement.clientHeight;
+        // console.log(window_widht, window_height);
+
+        // 监听鼠标移动事件，获取鼠标位置，计算鼠标在屏幕中的百分比
+        container.addEventListener('mousemove', (e) => {
+            // 鼠标坐标
+            let left = e.clientX;
+            let top = e.clientY;
+            // 百分比
+            let left_p = left / window_widht * 100;
+            let top_p = top / window_height * 100;
+            // 透视基点
+            container.style.perspectiveOrigin = left_p + "% " + top_p + "%";
+            // console.log(left_p,top_p);
+               
+        })
+    </script>
+</body>
+</html>

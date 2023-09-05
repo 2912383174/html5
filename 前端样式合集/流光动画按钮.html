@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>流光动画按钮</title>
+  </head>
+  <style>
+    body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+/* 设置按钮宽高，居中，底色 */
+.base {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 60px;
+  background-color: skyblue;
+  color: #fff;
+  line-height: 60px;
+  text-align: center;
+  &:hover {
+    animation: animate 5s linear infinite;
+    &:before {
+      filter: blur(20px);
+      opacity: 1;
+    }
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    background-size: 400%;
+    border-radius: 10px;
+    /* 默认不显示光影 */
+    opacity: 0;
+    transition: all 1s;
+  }
+}
+.linear {
+  text-decoration: none;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  /* 设置背景图的大小，起始处 */
+  background-size: 400%;
+  border-radius: 10px;
+}
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 400% 0;
+  }
+}
+
+  </style>
+  <body>
+    <div>
+      <a class="base linear" href="#">Button</a>
+    </div>
+  </body>
+</html>

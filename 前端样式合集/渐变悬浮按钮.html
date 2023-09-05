@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渐变悬浮按钮</title>
+    <style>
+        :root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #FD79A8;
+    --color3          : #0984E3;
+    --color4          : #00B894;
+    --color5          : #FDCB6E;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width              : 100vw;
+    height             : 100vh;
+    /* background-color: var(--background-color); */
+    display            : flex;
+    justify-content    : center;
+    align-items        : center;
+    font-family        : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -250px);
+    font-size  : 30px;
+    font-weight: bold;
+    /* color   : white; */
+}
+
+.container {
+    position: absolute;
+
+    width : 700px;
+    height: 300px;
+
+    /* 居中 分散显示 */
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+
+    /* background-color: #7591ad; */
+
+}
+
+.bt {
+    position: relative;
+    width   : 200px;
+    height  : 70px;
+
+    font-size      : 30px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+
+    /* 元素居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 背景放大*/
+    background-size: 200%;
+    /* 背景位置 */
+    background-position: 0 0;
+
+    /* 开启zindex
+        开启后子元素无法第一当前背景
+    */
+    z-index: 0;
+
+    transition: all .5s;
+
+}
+
+.bt:nth-child(1) {
+    background-image: linear-gradient(to right, #a18cd1,#fbc2eb,#a18cd1);
+}
+.bt:nth-child(2) {
+    background-image: linear-gradient(to right, #80a866, #faefb0, #80a866);
+}
+.bt:nth-child(3) {
+    background-image: linear-gradient(to right, #dd9595, #f1efce, #dd9595);
+}
+
+.bt::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    background-color: #fff;
+    opacity: .3;
+    /* 这里永远低不过背景 */
+    z-index: -1;
+}
+
+.bt:hover {
+    /* 移动位置 */
+    background-position: 100% 0%;
+    /* 上移 */
+    transform: translateY(-15px);
+}
+
+/* 制作阴影 */
+
+.bt::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 10px;
+    bottom: -5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 这里永远低不过背景*/
+    z-index: -2;
+    border-radius: 50%;
+    filter: blur(10px);
+    transform: scale(0);
+    transition: all .5s;
+
+}
+
+.bt:hover::before {
+    bottom: -25px;
+    transform: scale(1);
+}
+    </style>
+</head>
+<body>
+    <div class="channel">
+        渐变悬浮按钮
+    </div>
+    <div class="container">
+        <a href="#" class="bt">button</a>
+        <a href="#" class="bt">button</a>
+        <a href="#" class="bt">button</a>
+    </div>
+</body>
+</html>

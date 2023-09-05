@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炫彩的数字时钟</title>
+    <style>
+        :root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #FD79A8;
+    --color3          : #0984E3;
+    --color4          : #00B894;
+    --color5          : #FDCB6E;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+    perspective: 800px;
+    transform-style: preserve-3d;
+}
+
+.channel {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-250px);
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.clock_box {
+    position: relative;
+    width: 380px;
+    height: 80px;
+    border-radius: 10px;
+    background-image: linear-gradient(135deg, var(--color2), var(--color4), var(--color6));
+    /* 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: animate 4s linear infinite ;
+}
+
+.clock_box::after,
+.clock_box::before {
+    position: absolute;
+    content: "";
+    /* 集成父级样式 */
+    background-image: inherit;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    filter: blur(15px);
+}
+
+.clock_box::before {
+    filter: blur(100px);
+
+}
+
+.clock {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    background-color: #2b2a2a;
+    border-radius: 8px;
+    /* 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock p {
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    letter-spacing: 2px;
+    background-image: linear-gradient(135deg, var(--color2), var(--color4), var(--color6));
+    /* text不是通用样式属性值 */
+    background-clip: text;
+    /* 这是chrome */
+    -webkit-background-clip: text;
+}
+
+@keyframes animate {
+    100% {
+        /* 色相变化 */
+        filter: hue-rotate(360deg);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="channel">
+        炫彩的数字时钟
+    </div>
+    <div class="clock_box">
+        <div class="clock">
+            <p id="time">12:12:12 AM</p>
+        </div>
+    </div>
+    <script>
+        // 获取页面id=time的元素
+        var time = document.querySelector('#time');
+
+        function up(time_el) {
+            // 获取当前时间
+        let date = new Date();
+        // 获取时分秒
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let s = date.getSeconds();
+
+        let day_night = "AM";
+
+        if(h > 12) {
+            h = h - 12;
+            day_night = "PM";
+        }
+
+        if(h < 10) {
+            h = "0" + h
+        }
+        if(m < 10) {
+            m = "0" + m
+        }
+        if(s < 10) {
+            s = "0" + s
+        }
+
+        time_el.textContent = h + ":" + m + ":" + s + " " +day_night;
+        }
+
+        // 定时器，每秒执行一次实现更新
+        setInterval(() => {
+                up(time);
+        }, 1000);
+
+    </script>
+</body>
+</html>
